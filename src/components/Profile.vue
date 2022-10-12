@@ -15,12 +15,8 @@
     </div>
 
     <div>
-      <input
-        type="submit"
-        class="button block primary"
-        :value="loading ? 'Loading ...' : 'Update'"
-        :disabled="loading"
-      />
+      <input type="submit" class="button block primary" :value="loading ? 'Loading ...' : 'Update'"
+        :disabled="loading" />
     </div>
 
     <div>
@@ -64,6 +60,7 @@ export default {
           username.value = data.username
           website.value = data.website
           avatar_url.value = data.avatar_url
+          store.user_meta = data
         }
       } catch (error) {
         alert(error.message)
