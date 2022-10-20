@@ -2,7 +2,9 @@
   <div class="container" style="padding: 50px 0 100px 0">
     <RouterLink to="/">Home</RouterLink>&nbsp;|&nbsp;<RouterLink to="/about">About</RouterLink>
     &nbsp;&nbsp;&nbsp;
-    <span v-if="store.user">{{ store.user_meta.username }}</span>
+    <span v-if="store.user">
+      <RouterLink to="/login">{{ store.user_meta.username }}</RouterLink>
+    </span>
     <span v-else>
       <RouterLink to="/login">Sign In</RouterLink>
     </span>
