@@ -8,7 +8,7 @@
     &nbsp;|&nbsp;
     <RouterLink to="/about">About</RouterLink>
     &nbsp;&nbsp;&nbsp;
-    <span v-if="store.user.id">
+    <span v-if="'id' in store.user">
       <RouterLink to="/login">{{ store.user_meta.username }}</RouterLink>
     </span>
     <span v-else>

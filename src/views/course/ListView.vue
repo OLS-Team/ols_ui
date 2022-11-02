@@ -1,14 +1,14 @@
 <template>
   <div>
-    <h3>Courses</h3>
+    <h3>Available Courses</h3>
 
     <ul>
       <li v-for="course in courses">
-        <RouterLink :to="{name: 'course.show', params:{id: course.id}}">
+        <RouterLink :to="{ name: 'course.show', params: { id: course.id } }">
           {{ course.name }}
         </RouterLink><br>
         &nbsp;&nbsp;&nbsp;(&nbsp;by:
-        <span v-for="(creator, index) in course.creators">{{creator.profiles.username}}<span
+        <span v-for="(creator, index) in course.creators">{{ creator.profiles.username }}<span
             v-if="index != (course.creators.length - 1)">, </span></span>
         &nbsp;)<br>
       </li>

@@ -6,7 +6,7 @@
     <button @click="getCourses">Get courses</button>
     <ul>
       <li v-for="course in courses">
-        {{ course.name }} (by: <span v-for="creator in course.creators">{{creator.profiles.username}},</span>)
+        {{ course.name }} (by: <span v-for="creator in course.creators">{{ creator.profiles.username }},</span>)
       </li>
     </ul>
     <button @click="getProfiles">Get profiles</button>
@@ -18,7 +18,7 @@
     <button @click="getCreators">Get creators</button>
     <ul>
       <li v-for="creator in creators">
-        {{ creator.profiles.username }} (bio: {{creator.bio}})
+        {{ creator.profiles.username }} (bio: {{ creator.bio }})
       </li>
     </ul>
 

@@ -16,4 +16,5 @@ store.user = supabase.auth.user()
 supabase.auth.onAuthStateChange((_, session) => {
   store.user = session.user
 })
+console.log(store.user)
 </script>

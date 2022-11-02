@@ -102,6 +102,8 @@ export default {
       } catch (error) {
         alert(error.message)
       } finally {
+        store.user = { id: 0 }
+        store.user_meta = {}
         loading.value = false
       }
     }
