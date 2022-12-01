@@ -13,6 +13,10 @@
         &nbsp;)<br>
       </li>
     </ul>
+    <hr>
+    <h3>Courses</h3>
+    {{ user }}
+    <hr>
   </div>
 </template>
 

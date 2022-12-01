@@ -27,11 +27,15 @@
 
 <script setup>
 import { ref } from "vue"
+import { useGlobalUserState, useGlobalUserMetaState } from "../store";
 import { supabase } from "../supabase"
 
 const loading = ref(false)
 const email = ref("")
 const authType = ref("email")
+// const store = useGlobalState()
+const user = useGlobalUserState()
+const user_meta = useGlobalUserMetaState()
 
 const setAuthEmail = () => {
   authType.value = 'email'
@@ -44,9 +48,12 @@ const setAuthGithub = () => {
 const signInWithGitHub = async () => {
   try {
     console.log(supabase.auth)
+    console.log(supabase)
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'github',
     })
+    user.value = supabase.auth.user()
+    // user_meta.value = data.app_metadata
     if (error) throw error
   } catch (error) {
     alert(error.error_description || error.message)

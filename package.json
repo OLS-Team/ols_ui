@@ -6,13 +6,14 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.0.0",
     "@vueup/vue-quill": "^1.0.0-beta.10",
+    "@vueuse/core": "^9.4.0",
     "pinia": "^2.0.23",
     "vue": "^3.0.5",
     "vue-router": "4"
   },
   "devDependencies": {
+    "@supabase/supabase-js": "^2.0.5",
     "@vitejs/plugin-vue": "^1.2.3",
     "@vue/compiler-sfc": "^3.0.5",
     "cypress": "^10.11.0",
