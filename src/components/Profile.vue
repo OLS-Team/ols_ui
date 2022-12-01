@@ -1,9 +1,9 @@
 <template>
   <form class="form-widget" @submit.prevent="updateProfile">
-    <Avatar v-model:path="avatar_url" @upload="updateProfile" />
+    <!-- <Avatar v-model:path="avatar_url" @upload="updateProfile" />
     <div>
       <label for="email">Email</label>
-      <input id="email" type="text" :value="store.user.email" disabled />
+      <input id="email" type="text" :value="user.email" disabled />
     </div>
     <div>
       <label for="username">Name</label>
@@ -17,7 +17,7 @@
     <div>
       <input type="submit" class="button block primary" :value="loading ? 'Loading ...' : 'Update'"
         :disabled="loading" />
-    </div>
+    </div> -->
 
     <div>
       <button class="button block" @click="signOut" :disabled="loading">
@@ -27,12 +27,14 @@
   </form>
 </template>
 
-<script>
+<script setup>
 import { supabase } from "../supabase"
-import { store } from "../store"
+// import { store } from "../store"
 import { onMounted, ref } from "vue"
 import Avatar from "./Avatar.vue"
 
+
+/*
 export default {
   components: {
     Avatar,
@@ -51,7 +53,8 @@ export default {
         let { data, error, status } = await supabase
           .from("profiles")
           .select(`username, website, avatar_url`)
-          .eq("id", store.user.id)
+          // .eq("id", store.user.id)
+          .eq("id", 2)
           .single()
 
         if (error && status !== 406) throw error
@@ -60,66 +63,69 @@ export default {
           username.value = data.username
           website.value = data.website
           avatar_url.value = data.avatar_url
-          store.user_meta = data
+          // store.user_meta = data
         }
       } catch (error) {
-        alert(error.message)
+        console.warn(error.message)
       } finally {
         loading.value = false
       }
     }
 
     async function updateProfile() {
-      try {
-        loading.value = true
-        store.user = supabase.auth.user()
+      // try {
+      loading.value = true
+      store.user = supabase.auth.user()
 
-        const updates = {
-          id: store.user.id,
-          username: username.value,
-          website: website.value,
-          avatar_url: avatar_url.value,
-          updated_at: new Date(),
+      //   const updates = {
+      //     id: store.user.id,
+      //     username: username.value,
+      //     website: website.value,
+      //     avatar_url: avatar_url.value,
+      //     updated_at: new Date(),
+      //   }
+
+      //   let { error } = await supabase.from("profiles").upsert(updates, {
+      //     returning: "minimal", // Don't return the value after inserting
+      //   })
+
+      //   if (error) throw error
+      // } catch (error) {
+      //   alert(error.message)
+      // } finally {
+      //   loading.value = false
+      // }
+      // }
+
+      async function signOut() {
+        try {
+          loading.value = true
+          let { error } = await supabase.auth.signOut()
+          if (error) throw error
+        } catch (error) {
+          console.warn(error.message)
+        } finally {
+          store.user = { id: 0 }
+          store.user_meta = {}
+          loading.value = false
         }
-
-        let { error } = await supabase.from("profiles").upsert(updates, {
-          returning: "minimal", // Don't return the value after inserting
-        })
-
-        if (error) throw error
-      } catch (error) {
-        alert(error.message)
-      } finally {
-        loading.value = false
       }
-    }
 
-    async function signOut() {
-      try {
-        loading.value = true
-        let { error } = await supabase.auth.signOut()
-        if (error) throw error
-      } catch (error) {
-        alert(error.message)
-      } finally {
-        loading.value = false
+      onMounted(() => {
+        getProfile()
+      })
+
+      return {
+        user,
+        loading,
+        username,
+        website,
+        avatar_url,
+
+        updateProfile,
+        signOut,
       }
-    }
-
-    onMounted(() => {
-      getProfile()
-    })
-
-    return {
-      store,
-      loading,
-      username,
-      website,
-      avatar_url,
-
-      updateProfile,
-      signOut,
-    }
-  },
-}
+    },
+  }
+  */
 </script>
