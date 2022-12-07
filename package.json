@@ -2,25 +2,39 @@
   "version": "0.0.0",
   "license":"MIT",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "npx vite --port=3000",
+    "build": "vue-tsc --noEmit && vite build",
+    "x_build": "vite build",
+    "lint:script": "eslint --ext .ts,vue --ignore-path .gitignore .",
     "serve": "vite preview",
-    "dbm": ""
+    "sb:schema": "supabase gen types typescript --local > ./src/schema.ts",
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@vueup/vue-quill": "^1.0.0-beta.10",
     "@vueuse/core": "^9.4.0",
     "pinia": "^2.0.23",
-    "vue": "^3.0.5",
-    "vue-router": "4"
+    "vue": "^3.2.45",
+    "vue-router": "^4.1.6",
+    "vue-vimeo-player": "^1.1.2",
+    "youtube-vue3": "^0.1.15"
   },
   "devDependencies": {
+    "@pinia/testing": "^0.0.14",
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0",
+    "@vue/eslint-config-typescript": "^7.0.0",
+    "eslint": "^7.25.0",
+    "eslint-plugin-vue": "^7.9.0",
+    "typescript": "^4.1.3",
     "@supabase/supabase-js": "^2.0.5",
     "@vitejs/plugin-vue": "^1.2.3",
     "@vue/compiler-sfc": "^3.0.5",
     "cypress": "^10.11.0",
     "jsdom": "^20.0.1",
     "vite": "^3.0.9",
-    "vitest": "^0.24.3"
+    "vitest": "^0.25.1",
+    "vue-tsc": "^1.0.9"
   }
 }

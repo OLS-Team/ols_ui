@@ -1,40 +1,28 @@
 <template>
-  <div class="container" style="padding: 50px 0 100px 0">
-    <RouterLink to="/">Home</RouterLink>
-    &nbsp;|&nbsp;
-    <RouterLink to="/course">Courses</RouterLink>
-    &nbsp;|&nbsp;
-    <RouterLink to="/creator">Creators</RouterLink>
-    &nbsp;|&nbsp;
-    <RouterLink to="/about">About</RouterLink>
-    &nbsp;&nbsp;&nbsp;
-    <!-- <span v-if="'id' in store.user">
+  <Layout>
+    <div class="container" style="padding: 50px 0 100px 0">
+      <RouterLink to="/course">Course</RouterLink>
+      &nbsp;|&nbsp;
+      <RouterLink to="/creator">Creator</RouterLink>
+      &nbsp;|&nbsp;
+      <RouterLink to="/about">About</RouterLink>
+      &nbsp;&nbsp;&nbsp;
+      <!-- <span v-if="'id' in store.user">
       <RouterLink to="/login">{{ store.user_meta.username }}</RouterLink>
     </span>
     <span v-else>
       <RouterLink to="/login">Sign In</RouterLink>
     </span> -->
-    <h3>Open Learning Server</h3>
-    <router-view />
-    <p>user_meta: {{ user_meta }}</p>
-    <p>user: {{ user }}</p>
-    <p>session: {{ session }}</p>
-    <!-- <p>{{ user }}</p> -->
-    <hr>
-    <button @click="signInWithGitHub">Sign In Via GitHub</button>
-    <hr>
-    <button @click="signOutOfGitHub">Sign Out Of GitHub</button>
-    <hr>
-    <button @click="checkUser">Check User</button>
-    <hr>
-    <button @click="checkSession">Check Session</button>
-  </div>
+      <router-view />
+    </div>
+  </Layout>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useGlobalUserState, useGlobalUserMetaState } from "./store"
 import { supabase, signInWithGitHub, signOutOfGitHub, getUser, getSession } from "./supabase"
+import Layout from "./components/layouts/DefaultLayout.vue";
 
 const user_meta = useGlobalUserMetaState()
 // const user = useGlobalUserState()

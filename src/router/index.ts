@@ -18,6 +18,41 @@ const router = createRouter({
       component: () => import('../views/AboutView.vue')
     },
     {
+      path: "/courses",
+      name: "courses",
+      component: () => import("@/views/courses/CourseList.vue"),
+    },
+    {
+      path: "/courses/:id",
+      name: "course",
+      props: true,
+      component: () => import("@/views/courses/CourseView.vue"),
+    },
+    {
+      path: "/courses/:course_id/unit/:unit_id",
+      name: "course_unit",
+      props: true,
+      component: () => import("@/views/courses/UnitView.vue"),
+    },
+    {
+      path: "/courses/:course_id/unit/:unit_id/lessons/:lesson_id",
+      name: "course_lesson",
+      props: true,
+      component: () => import("@/views/courses/LessonView.vue"),
+    },
+    {
+      path: "/creators",
+      name: "creators",
+      component: () => import("@/views/creators/CreatorList.vue"),
+    },
+    {
+      path: "/creators/:id",
+      name: "creator",
+      props: true,
+      component: () => import("@/views/creators/CreatorList.vue"),
+    },
+    /*
+    {
       path: '/course',
       name: 'course.list',
       component: () => import('../views/course/ListView.vue')
@@ -32,6 +67,7 @@ const router = createRouter({
       name: 'creator',
       component: () => import('../views/creator/ListView.vue')
     },
+    */
     {
       path: '/login',
       name: 'login',

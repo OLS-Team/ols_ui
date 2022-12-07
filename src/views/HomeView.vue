@@ -1,6 +1,11 @@
 <template>
-  <div class="container" style="padding: 50px 0 100px 0">
-    <h3>Site Home Page</h3>
+  <div>
+    <h3>Postively Disrupting Online Education</h3>
+    <img alt="Vue logo" src="../assets/OLS-Logo-200-dk.png" />
+    <h1>OLS</h1>
+    <h3>Open Learning Server</h3>
+
+    item:: {{ item }}
 
     <!--
     <button @click="getCourses">Get courses</button>
@@ -31,7 +36,24 @@
 </template>
 
 <script setup lang="ts">
+import { supabase } from "../supabase";
+import { ref, toRefs } from "vue";
+
+const item = ref();
+// console.log(data)
+const getItem = async () => {
+  try {
+    const { data, error } = await supabase.from("profiles").select("*").limit(1).single();
+    console.log(data, error)
+    item.value = data?.username;
+  } catch (e) {
+    alert(e)
+  }
+}
+
+getItem()
 /*
+item.value = data?.name;
 import { supabase } from "../supabase"
 import { ref, reactive } from 'vue';
 import { useGlobalUserState, useGlobalUserMetaState } from "../store";
@@ -101,3 +123,19 @@ async function getProfiles() {
 }
 */
 </script>
+
+
+<style>
+img {
+  border-color: aliceblue;
+  border-width: 3px;
+}
+
+h1 {
+  color: #286291;
+}
+
+h3 {
+  color: #54afe6;
+}
+</style>
